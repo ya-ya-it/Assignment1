@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Person.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Assignment1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">assignment1</a> &gt; <span class="el_source">Person.java</span></div><h1>Person.java</h1><pre class="source lang-java linenums">package assignment1;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ *
+ * @author Daria Davydenko Student number: 200335788
+ */
+public class Person {
+
+    private String firstName, lastName, streetAddress, city, province, postalCode;
+    private LocalDate birthdate;
+
+    /**
+     * This is a constructor for the class Person
+     *
+     * @param firstName
+     * @param lastName
+     * @param address
+     * @param city
+     * @param province
+     * @param postalCode validates the postal code - 6 characters long
+     * @param birthday
+     */
+    public Person(String firstName, String lastName, String address,
+<span class="fc" id="L29">            String city, String province, String postalCode, LocalDate birthday) {</span>
+<span class="fc" id="L30">        this.firstName = firstName;</span>
+<span class="fc" id="L31">        this.lastName = lastName;</span>
+<span class="fc" id="L32">        this.streetAddress = address;</span>
+<span class="fc" id="L33">        this.city = city;</span>
+<span class="fc" id="L34">        this.province = province;</span>
+<span class="fc" id="L35">        setPostalCode(postalCode);</span>
+<span class="fc" id="L36">        this.birthdate = birthday;</span>
+<span class="fc" id="L37">    }</span>
+
+    /**
+     * This method validates if the postal code contain 6 characters and if it
+     * is the pattern of [letter][number][letter][number][letter][number]
+     *
+     * @param pCode
+     */
+    public void setPostalCode(String pCode) {
+<span class="fc" id="L46">        Pattern pattern = Pattern.compile(&quot;^[(a-z)][(\\d)][(a-z)][(\\d)][(a-z)][(\\d)]&quot;,</span>
+                Pattern.CASE_INSENSITIVE);
+<span class="fc" id="L48">        Matcher matcher = pattern.matcher(pCode);</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (pCode.length() == 6) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">            if (matcher.find()) {</span>
+<span class="fc" id="L51">                postalCode = pCode;</span>
+            }
+        } else {
+<span class="fc" id="L54">            throw new IllegalArgumentException(&quot;Postal code must be 6 character length&quot;);</span>
+        }
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * This method changes address of person. It accepts street name, city,
+     * province, postal code
+     *
+     * @param street
+     * @param city
+     * @param province
+     * @param postalCode validates the postal code - 6 characters long
+     */
+    public void changeAddress(String street, String city,
+            String province, String postalCode) {
+<span class="fc" id="L69">        this.streetAddress = street;</span>
+<span class="fc" id="L70">        this.city = city;</span>
+<span class="fc" id="L71">        this.province = province;</span>
+<span class="fc" id="L72">        setPostalCode(postalCode);</span>
+<span class="fc" id="L73">    }</span>
+
+    /**
+     * This method calculates the age of the person by using Period class.
+     *
+     * @return int age
+     */
+    public int getAge() {
+<span class="fc" id="L81">        LocalDate today = LocalDate.now();</span>
+<span class="fc" id="L82">        Period years = Period.between(birthdate, today);</span>
+<span class="fc" id="L83">        int age = years.getYears();</span>
+<span class="fc" id="L84">        return age;</span>
+    }
+
+    /**
+     * This method calculate the year person was born
+     *
+     * @return int year of born
+     */
+    public int getYearBorn() {
+<span class="fc" id="L93">        return birthdate.getYear();</span>
+    }
+
+    /**
+     * This method save the full address of the person in the format &quot;street
+     * name, city, province, postal code&quot;
+     *
+     * @return String full address
+     *
+     */
+    public String getFullAddress() {
+<span class="fc" id="L104">        String fullAddress = streetAddress + &quot;, &quot; + city + &quot;, &quot; + province + &quot;, &quot; + postalCode;</span>
+<span class="fc" id="L105">        return fullAddress;</span>
+    }
+
+    //Getters and Setters
+    public String getFirstName() {
+<span class="fc" id="L110">        return firstName;</span>
+    }
+
+    public String getLastName() {
+<span class="fc" id="L114">        return lastName;</span>
+    }
+
+    public String getStreetAddress() {
+<span class="fc" id="L118">        return streetAddress;</span>
+    }
+
+    public String getCity() {
+<span class="fc" id="L122">        return city;</span>
+    }
+
+    public String getProvince() {
+<span class="fc" id="L126">        return province;</span>
+    }
+
+    public String getPostalCode() {
+<span class="fc" id="L130">        return postalCode;</span>
+    }
+
+    public LocalDate getBirthdate() {
+<span class="fc" id="L134">        return birthdate;</span>
+    }
+
+    public void setFirstName(String firstName) {
+<span class="nc" id="L138">        this.firstName = firstName;</span>
+<span class="nc" id="L139">    }</span>
+
+    public void setLastName(String lastName) {
+<span class="nc" id="L142">        this.lastName = lastName;</span>
+<span class="nc" id="L143">    }</span>
+
+    public void setStreetAddress(String streetAddress) {
+<span class="nc" id="L146">        this.streetAddress = streetAddress;</span>
+<span class="nc" id="L147">    }</span>
+
+    public void setCity(String city) {
+<span class="nc" id="L150">        this.city = city;</span>
+<span class="nc" id="L151">    }</span>
+
+    public void setProvince(String province) {
+<span class="nc" id="L154">        this.province = province;</span>
+<span class="nc" id="L155">    }</span>
+
+    public void setBirthdate(LocalDate birthdate) {
+<span class="nc" id="L158">        this.birthdate = birthdate;</span>
+<span class="nc" id="L159">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
