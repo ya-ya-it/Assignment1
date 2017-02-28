@@ -5,6 +5,8 @@
  */
 package assignment1;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,5 +33,10 @@ public class Assignment1 {
         } else {
             System.out.println("Invalid");
         }
+        LocalDate
+        
+        LocalDate today = LocalDate.now();
+        Period period = Period.between(enrollmentDate, today);
+        int age = period.getYears();
     }
 }
