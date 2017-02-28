@@ -9,9 +9,10 @@ import java.util.regex.Pattern;
  *
  * @author Daria Davydenko 
  * Student number: 200335788
- * 
+ *
  * Test Change Address does not pass because you put wrong Postal Code there.
- * There is "K9LW2S", but the format should be [letter][number][letter][number][letter][number]
+ * There is "K9LW2S", but the format should be
+ * [letter][number][letter][number][letter][number]
  *
  */
 public class Person {
@@ -59,7 +60,7 @@ public class Person {
             if (matcher.find()) {
                 postalCode = pCode.toUpperCase();
             } else {
-               throw new IllegalArgumentException("Postal code  pattern is not matched"); 
+                throw new IllegalArgumentException("Postal code  pattern is not matched");
             }
         } else {
             throw new IllegalArgumentException("Postal code must be 6 character length");
@@ -173,6 +174,5 @@ public class Person {
     public String toString() {
         return firstName + " " + lastName;
     }
-    
 
 }
