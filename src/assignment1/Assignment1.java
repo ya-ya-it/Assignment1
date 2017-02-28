@@ -5,14 +5,12 @@
  */
 package assignment1;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  *
- * @author Dasha
+ * @author Daria Davydenko 
+ * Student number: 200335788
+ * 
  */
 public class Assignment1 {
 
@@ -20,23 +18,5 @@ public class Assignment1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        String zip = "k7k4o5";
-
-        Pattern pattern = Pattern.compile("^[(a-z)][(\\d)][(a-z)][(\\d)][(a-z)][(\\d)]", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(zip);
-
-        if (zip.length() == 6) {
-            if (matcher.find()) {
-                System.out.println("Valid");
-            }
-        } else {
-            System.out.println("Invalid");
-        }
-        LocalDate
-        
-        LocalDate today = LocalDate.now();
-        Period period = Period.between(enrollmentDate, today);
-        int age = period.getYears();
     }
 }

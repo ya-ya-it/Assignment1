@@ -26,7 +26,12 @@ public class Student extends Person {
     }
 
     public void setEnrollmentDate(LocalDate enrollmentDate) {
-        this.enrollmentDate = enrollmentDate;
+        LocalDate today = LocalDate.now();
+        if(enrollmentDate.getYear() <= today.getYear()){
+            this.enrollmentDate = enrollmentDate;
+        } else {
+            throw new IllegalArgumentException("The student is from the future");
+        }
     }
 
     public void setStudentNum(int studentNum) {
