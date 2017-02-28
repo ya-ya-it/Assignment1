@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 public class Person {
 
     private String firstName, lastName, streetAddress, city, province, postalCode;
-    private LocalDate birthdate;
+    private LocalDate birthday;
 
     /**
      * This is a constructor for the class Person
@@ -38,7 +38,7 @@ public class Person {
         this.city = city;
         this.province = province;
         setPostalCode(postalCode);
-        this.birthdate = birthday;
+        this.birthday = birthday;
     }
 
     /**
@@ -57,7 +57,9 @@ public class Person {
 
         if (pCode.length() == 6) {
             if (matcher.find()) {
-                postalCode = pCode;
+                postalCode = pCode.toUpperCase();
+            } else {
+               throw new IllegalArgumentException("Postal code  pattern is not matched"); 
             }
         } else {
             throw new IllegalArgumentException("Postal code must be 6 character length");
@@ -88,7 +90,7 @@ public class Person {
      */
     public int getAge() {
         LocalDate today = LocalDate.now();
-        Period years = Period.between(birthdate, today);
+        Period years = Period.between(birthday, today);
         int age = years.getYears();
         return age;
     }
@@ -99,7 +101,7 @@ public class Person {
      * @return int year of born
      */
     public int getYearBorn() {
-        return birthdate.getYear();
+        return birthday.getYear();
     }
 
     /**
@@ -139,8 +141,8 @@ public class Person {
         return postalCode;
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
+    public LocalDate getBirthday() {
+        return birthday;
     }
 
     protected void setFirstName(String firstName) {
@@ -163,8 +165,14 @@ public class Person {
         this.province = province;
     }
 
-    protected void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    protected void setBirthday(LocalDate birthdate) {
+        this.birthday = birthdate;
     }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
+    
 
 }
