@@ -56,12 +56,8 @@ public class Person {
                 Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(pCode);
 
-        if (pCode.length() == 6) {
-            if (matcher.find()) {
+        if (pCode.length() == 6 && matcher.matches()) {
                 postalCode = pCode.toUpperCase();
-            } else {
-                throw new IllegalArgumentException("Postal code  pattern is not matched");
-            }
         } else {
             throw new IllegalArgumentException("Postal code must be 6 character length");
         }
